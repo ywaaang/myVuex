@@ -1,17 +1,28 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "./myVuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+    state: {
+        num: 222,
+    },
+    getters: {
+        getNum: (state) => {
+            return state.num;
+        },
+    },
+    mutations: {
+        incre(state, arg) {
+            state.num += arg;
+        },
+    },
+    actions: {
+        asyncIncre({ commit }, arg) {
+            setTimeout(() => {
+                commit("incre", arg);
+            }, 1000);
+        },
+    },
+    modules: {},
+});
